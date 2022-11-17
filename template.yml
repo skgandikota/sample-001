@@ -1,0 +1,42 @@
+apiVersion: scaffolder.backstage.io/v1beta3
+kind: Template
+metadata:
+  name: custom-field-timestamp-template
+  title: custom-field-timestamp-template
+  description: Sample template for demonstrating generic timestamp [Click here view formating style]( https://github.com/dayjs/dayjs-website/blob/master/docs/display/format.md)
+  tags:
+    - sample
+    - custom-field
+    - software-template
+  links:
+    - url: "https://github.com/dayjs/dayjs-website/blob/master/docs/display/format.md#list-of-all-available-formats"
+      title: list-of-all-available-formats
+      icon: TodayIcon
+    - url: "https://github.com/dayjs/dayjs-website/blob/master/docs/display/format.md#list-of-localized-formats"
+      title: list-of-short-form-formats
+      icon: DateRangeIcon
+spec:
+  owner: team-frameworks
+  type: documentation
+
+  parameters:
+    - title: Fill in some steps
+      properties:
+        reponame:
+          title:  Repo Name
+          type: string
+
+  steps:
+    - id: CreateRepo
+      name: Template Docs Skeleton
+      action: github:repo:create
+      input:
+        repoUrl: 'github.com?repo=${{ parameters.reponame }}&owner=skgandikota'
+
+
+  output:
+    links: 
+      - title: remoteUrl 
+        url: '${{steps.CreateRepo.output.remoteUrl}}'
+      - title: repoContentsUrl
+        url: '${{steps.CreateRepo.output.repoContentsUrl}}'
