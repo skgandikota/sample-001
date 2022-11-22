@@ -29,7 +29,7 @@ spec:
   steps:
     - id: CreateRepo
       name: Template Docs Skeleton
-      action: github:repo:create
+      action: github:template-repo:create
       input:
         repoUrl: 'github.com?repo=${{ parameters.reponame }}&owner=skgandikota'
 
